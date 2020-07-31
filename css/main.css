@@ -1,0 +1,209 @@
+button { color: white; }
+
+.container { 
+  margin: auto;
+  max-width: 1280px;
+  padding: 1rem;
+}
+
+/* Header */
+/* Making the position -webkit-sticky and sticky will cause the header to stay at the top
+ * of the page as we scroll down. */
+header { position: -webkit-sticky; position: sticky; top: 0; }
+
+#button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+}
+
+#nav-main {
+  background: #0000CD;
+  position: relative;
+  top: 0;
+  transition: all 300ms ease-in-out;
+  width: 100%;
+  z-index: 10;
+}
+
+#nav-main.has-scrolled {
+  box-shadow: 0 2px 5px 8px rgba(0,0,0, .3);
+}
+
+#nav-main ul {
+  align-items: center;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 1rem;
+}
+
+#nav-main li {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 25px;
+}
+
+/* Common elements Part 1 */
+#nav-main a {
+  background-color: #f44336;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+}
+
+#nav-main a:hover{
+  color: black;
+}
+
+/* Main */
+main {
+  margin-top: 80px;
+}
+
+/* Hero Container */
+.hero-container {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('⁨../../Avatar Image2.jpg');
+  background-size: cover;
+  min-height: 65vh;
+  position: relative;
+}
+
+.hero-body {
+  padding: 2rem;
+  position: absolute;
+  margin: auto;
+  color: white;
+  text-shadow: brown;
+  z-index: 1;
+}
+
+.hero-container2 {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('⁨../../avatar image3.jpg');
+  background-size: cover;
+  min-height: 65vh;
+  position: relative;
+}
+
+.hero-body2 {
+  padding: 2rem;
+  position: absolute;
+  right: 0;
+  margin: auto;
+  color: black;
+  text-shadow: brown;
+  z-index: 1;
+}
+
+.hero-container3 {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('⁨../../avatar tree.png');
+  background-size: cover;
+  min-height: 65vh;
+  position: relative;
+}
+.hero-body3 {
+  padding: 2rem;
+  position: absolute;
+  bottom: 0;
+  margin: auto;
+  color: white;
+  text-shadow: brown;
+  z-index: 1;
+}
+
+.hero-container4 {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('⁨../../Avatar Image1.jpg');
+  background-size: cover;
+  min-height: 65vh;
+  position: relative;
+}
+
+/* Content Blocks */
+.content-blocks {
+  /* Flexbox to make easier to work with */
+  display: flex;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  max-width: 1280px;
+  margin: auto;
+}
+
+.content-blocks .content-blocks--item {
+  border: 1px solid #dedede;
+  /* 3 blocks per row with flex set to 33.33 % */
+  flex: 33.33%;
+  padding: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .content-blocks--item {
+    flex: 100%;
+  }
+}
+
+.content-blocks .content-blocks--item img { 
+  display: block;
+  width: 100%;
+}
+.content-blocks .content-blocks--body {
+  padding: 1rem;
+}
+
+.content-blocks .content-blocks--body p {
+  margin-bottom: 0%;
+}
+
+.content-blocks .content-blocks--body h3 {
+  color: blue;
+}
+
+/* Footer */
+footer {
+  background: #333333;
+  padding: 2rem;
+  text-align: center;
+}
+
+#nav-footer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+#nav-footer .myBtn {
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: blue; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#nav-footer .myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+/* Disclaimer color white */
+#nav-footer .author {
+  position: static;
+  right: 0;
+  bottom: 0;
+  color: white;
+}

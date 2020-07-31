@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Avatar</title>
+  <link href="css/main.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+</head>
+<body onLoad="ready()">
+
+<!-- Main Header -->
+        <header>
+          <nav id="nav-main">
+            <ul>
+              <!-- Home Link -->
+              <li>
+                <a href="index.html">
+                  So, you want to learn a little about Avatar?
+                </a>
+              </li>
+              <!-- Characters link -->
+              <li>
+                <a href="characters.html">
+                  Characters
+                </a>
+              </li>
+              <!-- Charts link -->
+              <li>
+                <a href="extra.html">
+                  Charts
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+    <div class="container">
+      <h1>View the following charts to learn about how Avatar did in the US Box Office. Avatar came out in 2009 and broke records in the Box office, many of which remain today!</h1>
+      <h3>U.S. Box Office Grossings Through 28 Days <sup>[1]</sup></h3>
+      <canvas id="myLine" width="250" height="200" aria-label="Hello ARIA World" role="img"></canvas>
+      <h3>Top Ten Worldwide Box Office Grossings <sup>[2]</sup></h3>
+      <canvas id="myBar" width="250" height="200" aria-label="Hello ARIA World" role="img"></canvas>
+    </div>
+
+    <div class="sources">
+      <li>[1] Data from: https://www.boxofficemojo.com/release/rl876971521/?sortDir=asc&sort=grossToDate&ref_=bo_rl__resort#table</li>
+      <li>[2] Data from: https://en.wikipedia.org/wiki/List_of_highest-grossing_films</li>
+    </div>
+
+    <footer>
+      <nav id="nav-footer">
+        <ul>
+        <button type="button" onclick="topFunction()" class="myBtn" title="Go to top">
+            Top of page
+        </button>
+        <p class="author">Designed by Chad Nislow</p>
+        </ul>
+      </nav>
+    </footer>
+<script>
+
+Chart.defaults.global.elements.line.fill = false;
+
+window.chartColors = {
+  red: 'rgb(255, 99, 132)',
+  orange: 'rgb(255, 159, 64)',
+  yellow: 'rgb(255, 205, 86)',
+  green: 'rgb(75, 192, 192)',
+  blue: 'rgb(54, 162, 235)',
+  purple: 'rgb(153, 102, 255)',
+  grey: 'rgb(231,233,237)'
+};
+
+var total = [26.752099, 52.281135, 77.025481, 93.411301, 109.497762, 125.943053, 137.094051, 160.189097, 188.463503, 212.711184, 232.129323, 
+              250.419951, 268.886074, 283.624210, 308.898218, 334.733769, 352.114898, 360.209452, 367.536685, 374.445852, 380.540297, 393.820950, 415.090487, 430.846514, 
+              435.957707, 441.024441, 445.768203, 450.467005];
+
+var perDay = [26.752099, 25.529036, 24.744346, 16.385820, 16.086461, 16.445291, 11.150998, 23.095046, 28.274406, 24.247681, 19.418139, 18.290628, 18.466123, 14.738136, 
+              25.274008, 25.835551, 17.381129, 8.094554, 7.327233, 6.909167, 6.094445, 13.280653, 21.269537, 15.756027, 5.111193, 5.066734, 4.743762, 4.698802];
+
+var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = [];
+for(let i = 1; i < 29; i ++) {
+  DAYS.push(i);
+}
+
+//config for chart one
+var config = {
+  type: 'line',
+  data: {
+    labels: DAYS,
+    datasets: [{
+      label: "Total Grossed",
+      backgroundColor: window.chartColors.blue,
+      borderColor: window.chartColors.blue,
+      data: total,
+      fill: false,
+    }, {
+      label: "Grossings Per Day",
+      backgroundColor: window.chartColors.orange,
+      borderColor: window.chartColors.orange,
+      data: perDay,
+      fill: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    tooltips: {
+      mode: 'index',
+      intersect: false,
+    },
+   hover: {
+      mode: 'nearest',
+      intersect: true
+    },
+    scales: {
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Day'
+        },
+        gridLines: {
+            display: false
+        },
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Dollars (Millions)'
+        },
+        gridLines: {
+            display: false
+        },
+        ticks: {
+            beginAtZero: true,
+            callback: function(value, index, values) {
+            return '$' + value; }
+          }
+      }]
+    }
+  }
+};
+
+ctx = document.getElementById("myLine");
+var myLine = new Chart(ctx, config);
+
+var highestGrossingMovies = ['Avengers: Endgame', 'Avatar', 'Titanic', 'Star Wars: The Force Awakens', 'Avengers: Infinity War', 'Jurassic World', 'The Lion King',
+                              'The Avengers', 'Furious 7', 'Frozen II'];
+
+var highestGrossingPrices = [2.797800564, 2.790439000, 2.194439542, 2.068223624, 2.048359754, 1.671713208, 1.656943394, 1.518812988, 1.516045911, 1.450026933];
+
+//config for chart 2
+var config2 = {
+  type: 'bar',
+  data: {
+    labels: highestGrossingMovies,
+    datasets: [{
+      label: "Total Grossed",
+      backgroundColor: [window.chartColors.red, window.chartColors.blue, window.chartColors.red, window.chartColors.red, window.chartColors.red, window.chartColors.red,
+                        window.chartColors.red, window.chartColors.red, window.chartColors.red, window.chartColors.red],
+      borderColor: window.chartColors.blue,
+      data: highestGrossingPrices,
+      fill: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    tooltips: {
+      mode: 'index',
+      intersect: false,
+    },
+   hover: {
+      mode: 'nearest',
+      intersect: true
+    },
+    scales: {
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Movies'
+        },
+        gridLines: {
+            display: false
+        },
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Dollars (Billions)'
+        },
+        gridLines: {
+            display: false
+        },
+        ticks: {
+            beginAtZero: true,
+            callback: function(value, index, values) {
+            return '$' + value; }
+          }
+      }]
+    }
+  }
+};
+
+ctx = document.getElementById("myBar");
+var myBar = new Chart(ctx, config2);
+
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+
+</script>
+
+</body>
+</html>
